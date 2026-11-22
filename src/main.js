@@ -74,14 +74,15 @@ const people=TEAM.map(p=>{
 });
 SEATS.forEach(s=>makeSeat(s.x,s.z,s.face));
 
-function makeTag(name){
-  const c=document.createElement('canvas');c.width=256;c.height=64;const g=c.getContext('2d');
-  g.fillStyle='#000a';g.fillRect(0,0,256,64);g.fillStyle='#fff';g.font='bold 28px sans-serif';g.textAlign='center';g.textBaseline='middle';g.fillText(name,128,34,240);
-  const sp=new THREE.Sprite(new THREE.SpriteMaterial({map:new THREE.CanvasTexture(c)}));sp.scale.set(1.6,.4,1);return sp;
+function makeTag(name,big){
+  const c=document.createElement("canvas");c.width=big?512:256;c.height=big?96:64;const g=c.getContext("2d");
+  g.fillStyle="#000a";g.fillRect(0,0,c.width,c.height);g.fillStyle="#fff";g.font="bold "+(big?40:28)+"px sans-serif";g.textAlign="center";g.textBaseline="middle";g.fillText(name,c.width/2,c.height/2+2,c.width-16);
+  const sp=new THREE.Sprite(new THREE.SpriteMaterial({map:new THREE.CanvasTexture(c)}));sp.scale.set(big?3.6:1.6,big?.68:.4,1);return sp;
 }
+(OFFICE.labels||[]).forEach(l=>{const s=makeTag(l.text,true);s.position.set(l.x,2.8,l.z);scene.add(s);});
 
 // ---- player ----
-const me={x:0,z:1,face:PI,rig:makeRig(PLAYER),seat:null,phase:0};
+const me={x:0,z:3,face:PI,rig:makeRig(PLAYER),seat:null,phase:0};
 me.rig.root.position.set(me.x,0,me.z);
 let yaw=0,pitch=.35,dist=4.2,locked=false,started=false;
 const keys={};
