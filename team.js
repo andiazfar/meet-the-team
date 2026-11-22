@@ -24,7 +24,7 @@ function pod(dept, cx, z, face, members) {
   members.forEach((m, k) => {
     const i = n++, female = m[2] === 'F';
     TEAM.push({
-      name: m[0], role: m[1] + ', ' + dept, does: DEPT_DOES[dept], fact: 'This is a placeholder fun fact about me.',
+      name: m[0], dept, role: m[1] + ', ' + dept, does: DEPT_DOES[dept], fact: 'This is a placeholder fun fact about me.',
       x: cx + (k - (members.length - 1) / 2) * 2.4, z, face,
       skin: SK[i % SK.length], hair: HR[i % HR.length], shirt: SH[i % SH.length], pants: PT[i % PT.length],
       style: female ? (i % 2 ? 'long' : 'bun') : (i % 3 ? 'short' : 'cap'),
@@ -70,4 +70,22 @@ const CHATTER = [
   ["Hanif","Can someone check the pipeline numbers?"],
 ];
 
-window.GAME_DATA = {OFFICE, TEAM, SEATS, PLAYER, CHATTER};
+// Small talk at the pantry: [first person says, second person replies]
+const SMALLTALK = [
+  ["Teh tarik or coffee today?","Coffee. I really need it."],
+  ["Did you watch the match last night?","Don't remind me..."],
+  ["Any plans for the weekend?","Just sleeping, honestly."],
+  ["Where do we go for lunch?","Nasi lemak again?"],
+  ["Is it Friday yet?","Not even close."],
+  ["Did you see the traffic this morning?","Worst ever. I was late."],
+  ["Who finished the biscuits?","Not me. Probably Hazman."],
+  ["It is so cold in here.","Tell that to the AC."],
+  ["Have you tried the new cafe nearby?","Not yet. Is it good?"],
+  ["How is your week going?","Busy, but okay!"],
+];
+// What someone mutters when they go to the pantry alone
+const SOLO = ["Ahh, I needed this.","Where did the sugar go?","Just five minutes of peace.","Who left the cup here?"];
+// A third person chiming in
+const REACT = ["Haha, true.","Same here!","Wait, what?","Right?!"];
+
+window.GAME_DATA = {OFFICE, TEAM, SEATS, PLAYER, CHATTER, SMALLTALK, SOLO, REACT};
